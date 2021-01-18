@@ -2,12 +2,14 @@ const express = require("express"); // import the express package
 
 const server = express(); // creates the server
 
-// handle requests to the root of the api, the / route
+// server.use(express.json);
+
 server.get("/", (req, res) => {
-  res.send("Hello from la verga de tu abuelo");
+  res.status(200).send("have we arrived? Indeed, we have! 💅");
 });
 
-// watch for connections on port 5000
-server.listen(8000, () =>
-  console.log("Server running on http://localhost:5000")
-);
+server.get(`/hello`, (req, res) => {
+  res.status(200).json("Yes, hello!👋");
+});
+
+module.exports = server;
