@@ -4,7 +4,7 @@ const server = express(); // creates the server
 
 // handle requests to the root of the api, the / route
 server.get("/", (req, res) => {
-  res.send("Hello from la verga de tu madre");
+  res.send("Hello from la verga de tu abuelo");
 });
 
 // watch for connections on port 5000
