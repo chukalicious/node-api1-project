@@ -9,7 +9,7 @@ server.get("/", (req, res) => {
 });
 
 server.get(`/hello`, (req, res) => {
-  res.status(200).json("Yes, hello!👋");
+  res.status(200).json("Yes, hello! 👋");
 });
 
 module.exports = server;
