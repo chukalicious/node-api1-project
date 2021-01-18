@@ -1,4 +1,3 @@
-const { setServers } = require("dns");
 const server = require("./server");
 
 const PORT = 8000;
