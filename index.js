@@ -1,4 +1,7 @@
+const express = require("express");
 const server = require("./api/server");
+
+server.use(express.json());
 
 const PORT = 8000;
 

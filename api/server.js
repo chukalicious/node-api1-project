@@ -2,7 +2,7 @@ const express = require("express"); // import the express package
 const User = require("../api/user-model");
 const server = express(); // creates the server
 
-server.use(express.json);
+server.use(express.json());
 
 // server.get("/", (req, res) => {
 //   res.status(200).send("have we arrived? Indeed, we have! 💅");
@@ -12,18 +12,25 @@ server.get(`/hello`, (req, res) => {
   res.status(200).json("Yes, hello! 👋");
 });
 
-server.post(`/api/users`, async (req, res) => {
+// server.post(`/api/users`, async (req, res) => {
+//   const user = req.body;
+//   if (!user.name || !user.bio) {
+//     res.status(400).json({ message: "must include name and bio" });
+//   } else {
+//     try {
+//       const newUser = await User.create(user);
+//       res.status(201).json(newUser);
+//     } catch (err) {
+//       res.status(500).json({ error: err.message });
+//     }
+//   }
+// });
+
+server.post(`/api/users`, (req, res) => {
   const user = req.body;
-  if (!user.name || !user.bio) {
-    res.status(400).json({ message: "must include name and bio" });
-  } else {
-    try {
-      const newUser = await User.create(user);
-      res.status(201).json(newUser);
-    } catch (err) {
-      res.status(500).json({ error: err.message });
-    }
-  }
+  User.create(user)
+    .then((newUser) => res.status(201).json(newUser))
+    .catch((err) => console.log(err));
 });
 
 server.get(`/api/users`, async (req, res) => {
