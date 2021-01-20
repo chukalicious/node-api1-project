@@ -1,48 +1,45 @@
 const shortid = require("shortid");
 
-const users = [
-  {
-    id: shortid.generate(),
-    name: "Kat",
-    bio: "learning backend",
-  },
+let dogs = [
+  { id: shortid.generate(), name: "Captain", weight: 25, adopter_id: null },
+  { id: shortid.generate(), name: "Doggo", weight: 13, adopter_id: null },
 ];
 
 module.exports = {
   findAll() {
-    // SELECT * FROM users;
-    return Promise.resolve(users);
+    // SELECT * FROM dogs;
+    return Promise.resolve(dogs);
   },
 
   findById(id) {
-    // SELECT * FROM users WHERE id = 1;
-    const user = users.find((d) => d.id === id);
-    return Promise.resolve(user);
+    // SELECT * FROM dogs WHERE id = 1;
+    const dog = dogs.find((d) => d.id === id);
+    return Promise.resolve(dog);
   },
 
-  create({ name, bio }) {
-    // INSERT INTO users (id, name, bio) VALUES ('xyz', 'Foo', "bar");
-    const newUser = { id: shortid.generate(), name, bio };
-    users.push(newUser);
-    return Promise.resolve(newUser);
+  create({ name, weight }) {
+    // INSERT INTO dogs (id, name, weight, adopter_id) VALUES ('xyz', 'Foo', 10, NULL);
+    const newDog = { id: shortid.generate(), name, weight, adopter_id: null };
+    dogs.push(newDog);
+    return Promise.resolve(newDog);
   },
 
   update(id, changes) {
-    // UPDATE users SET name = 'Foo', weight = 'b', adopter_id = 'abc' WHERE id = 1;
-    const user = users.find((user) => user.id === id);
-    if (!user) return Promise.resolve(null);
+    // UPDATE dogs SET name = 'Foo', weight = 9, adopter_id = 'abc' WHERE id = 1;
+    const dog = dogs.find((dog) => dog.id === id);
+    if (!dog) return Promise.resolve(null);
 
-    const updatedUser = { ...changes, id };
-    users = users.map((d) => (d.id === id ? updatedUser : d));
-    return Promise.resolve(updatedUser);
+    const updatedDog = { ...changes, id };
+    dogs = dogs.map((d) => (d.id === id ? updatedDog : d));
+    return Promise.resolve(updatedDog);
   },
 
   delete(id) {
     // DELETE FROM dogs WHERE id = 1;
-    const user = users.find((user) => user.id === id);
-    if (!user) return Promise.resolve(null);
+    const dog = dogs.find((dog) => dog.id === id);
+    if (!dog) return Promise.resolve(null);
 
-    users = users.filter((d) => d.id !== id);
-    return Promise.resolve(user);
+    dogs = dogs.filter((d) => d.id !== id);
+    return Promise.resolve(dog);
   },
 };
