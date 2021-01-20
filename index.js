@@ -1,6 +1,6 @@
 const server = require("./api/server");
 
-const PORT = 8000;
+const PORT = 6000;
 
 server.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);

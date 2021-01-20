@@ -1,8 +1,8 @@
 const express = require("express"); // import the express package
-const User = require("../api/user-model");
 const server = express(); // creates the server
+const User = require("../api/user-model");
 
-server.use(express.json);
+server.use(express.json());
 
 // server.get("/", (req, res) => {
 //   res.status(200).send("have we arrived? Indeed, we have! 💅");
